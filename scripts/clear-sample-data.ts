@@ -6,8 +6,8 @@ dotenv.config({ path: resolve('.env.local') });
 
 async function clearSampleData() {
   const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
   console.log('🗑️ Clearing sample fundraisers...');

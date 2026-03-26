@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import axios from 'axios';
 import { getCachedTokenGate, setCachedTokenGate, clearCachedTokenGate } from '@/lib/tokenGatingCache';
-import { useX403Auth } from './useX403Auth';
 
 interface AuthState {
   isConnected: boolean;
@@ -30,15 +29,12 @@ export function useAuth() {
   const lastCheckedWallet = useRef<string | null>(null); // Track which wallet was checked
   const lastCheckTimestamp = useRef<number>(0); // Track when we last checked (throttle)
 
-  // x403 Authentication Hook
-  const x403 = useX403Auth();
-
   // Prevent hydration issues
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // x403 + Auth flow when wallet connects
+  // Auth flow when wallet connects (without x403 security verification)
   useEffect(() => {
     if (connected && publicKey) {
       const currentWallet = publicKey.toBase58();
@@ -50,8 +46,8 @@ export function useAuth() {
         console.log(`🔄 ${lastCheckedWallet.current ? 'Reconnected' : 'Connected'} wallet`);
         console.log(`   Wallet: ${currentWallet.slice(0, 8)}...${currentWallet.slice(-6)}`);
         
-        // Step 1: x403 Authentication (automatic)
-        handleX403AndAuth();
+        // Skip x403 authentication and proceed directly to token gating
+        checkAuthStatus(false);
         lastCheckedWallet.current = currentWallet;
       }
     } else {
@@ -81,25 +77,7 @@ export function useAuth() {
     }
   }, [connected, publicKey]);
 
-  // Handle x403 authentication first, then proceed with token gating
-  const handleX403AndAuth = async () => {
-    console.log('🔐 Starting x403 authentication...');
-    
-    // Step 1: Authenticate with x403
-    const session = await x403.authenticate();
-    
-    if (!session) {
-      console.log('❌ x403 authentication failed or cancelled');
-      // Wallet will be disconnected by x403 hook on cancel
-      return;
-    }
-    
-    console.log('✅ x403 authentication successful');
-    
-    // Step 2: Proceed with token gating check
-    checkAuthStatus(false);
-  };
-
+  
   const checkAuthStatus = async (forceRefresh = false) => {
     if (!publicKey) return;
 
@@ -275,7 +253,5 @@ export function useAuth() {
     declineTOS,
     checkAuthStatus,
     mounted,
-    // x403 state for modal
-    x403,
   };
 }

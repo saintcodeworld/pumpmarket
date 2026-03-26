@@ -10,8 +10,9 @@ import {
 } from '@/services/fundraiserService';
 import { sanitizeString } from '@/lib/validation/sanitization';
 import { encrypt } from '@/lib/crypto/encryption';
-import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
 import { createLog, getIpFromRequest } from '@/lib/logger';
+import { checkRateLimit, RATE_LIMITS } from '@/lib/rateLimit';
+import { v4 as uuidv4 } from 'uuid';
 
 // GET - Fetch all approved fundraisers or user's fundraisers
 export async function GET(req: NextRequest) {
@@ -206,6 +207,7 @@ export async function POST(req: NextRequest) {
       const encryptedDeliveryUrl = encrypt(deliveryUrl);
 
       const fundraiser = await createFundraiserService({
+        _id: uuidv4(),
         wallet,
         title: sanitizedTitle,
         description: sanitizedDescription,

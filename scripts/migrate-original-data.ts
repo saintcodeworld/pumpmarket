@@ -79,8 +79,8 @@ async function migrateOriginalData() {
   }
 
   const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY,
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
     {
       auth: {
         autoRefreshToken: false,
@@ -100,7 +100,7 @@ async function migrateOriginalData() {
     console.log('👥 Creating users...');
     const wallets = new Set<string>();
     
-    mockData.listings.forEach(([_id: string, listing: any]) => {
+    mockData.listings.forEach(([ _id, listing ]: [string, any]) => {
       const wallet = listing.wallet.replace('mockSeller', '1111111111111111111111111111111').slice(0, 44) + '01';
       wallets.add(wallet);
     });
