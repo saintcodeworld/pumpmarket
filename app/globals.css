@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #0f0f14;
+  color: #f4f4f5;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+/* Ensure page gradients render behind particles */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(153, 69, 255, 0.5);
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(153, 69, 255, 0.8);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(153, 69, 255, 0.5) rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(to right, #9945FF, #14F195);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Falling Leaves Animation */
+@keyframes fall {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0% {
+    margin-left: -20px;
+  }
+  50% {
+    margin-left: 20px;
+  }
+  100% {
+    margin-left: -20px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.falling-leaf {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  animation:
+    fall linear infinite,
+    sway ease-in-out infinite,
+    spin linear infinite;
+}
+
+.falling-leaf-once {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  animation:
+    fall linear forwards,
+    sway ease-in-out,
+    spin linear;
+  animation-iteration-count: 1, 1, 1;
+}
+
+/* Falling Snow Animation */
+@keyframes snowfall {
+  0% {
+    top: -50px;
+    opacity: 0;
+    transform: translateX(0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+    transform: translateX(var(--drift)) rotate(360deg);
+  }
+}
+
+.falling-snow {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  animation: snowfall linear infinite;
+  color: #e0f2fe;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+@layer base {
+  :root {
+    --background: 240 17% 7%;
+    --foreground: 240 6% 96%;
+    --card: 240 14% 9%;
+    --card-foreground: 240 6% 96%;
+    --popover: 240 14% 9%;
+    --popover-foreground: 240 6% 96%;
+    --primary: 270 100% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 10% 14%;
+    --secondary-foreground: 240 6% 96%;
+    --muted: 240 10% 14%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 153 91% 52%;
+    --accent-foreground: 240 17% 7%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 270 30% 20%;
+    --input: 240 10% 14%;
+    --ring: 270 100% 63%;
+    --chart-1: 270 100% 63%;
+    --chart-2: 153 91% 52%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+}
