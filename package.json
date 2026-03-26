@@ -46,7 +46,7 @@
     "winston": "^3.18.3"
   },
   "devDependencies": {
-    "@types/crypto-js": "^4.2.0",
+    "@types/crypto-js": "^4.2.2",
     "@types/dompurify": "^3.0.5",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20",
