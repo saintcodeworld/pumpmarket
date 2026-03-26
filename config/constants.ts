@@ -19,7 +19,7 @@ export const CONFIG = {
   USDC_MINT_MAINNET: process.env.NEXT_PUBLIC_USDC_MINT_MAINNET || 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
   
   // Database
-  MONGODB_URI: process.env.SUPABASE_DATABASE_URL || '',
+  MONGODB_URI: process.env.MONGODB_URI || process.env.SUPABASE_DATABASE_URL || '',
   SUPABASE_URL: process.env.SUPABASE_URL || '',
   SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY || '',
   SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
