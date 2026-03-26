@@ -7,9 +7,11 @@ interface TOSModalProps {
   isOpen: boolean;
   onAccept: () => void;
   onDecline: () => void;
+  error?: string | null;
+  onClearError?: () => void;
 }
 
-export function TOSModal({ isOpen, onAccept, onDecline }: TOSModalProps) {
+export function TOSModal({ isOpen, onAccept, onDecline, error, onClearError }: TOSModalProps) {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [accepting, setAccepting] = useState(false);
   const { disconnect } = useWallet();
@@ -24,9 +26,15 @@ export function TOSModal({ isOpen, onAccept, onDecline }: TOSModalProps) {
 
   const handleAccept = async () => {
     setAccepting(true);
-    await onAccept();
-    // Reset state after a delay in case modal doesn't close
-    setTimeout(() => setAccepting(false), 1000);
+    onClearError?.(); // Clear any previous error
+    try {
+      await onAccept();
+    } catch (error) {
+      console.error('TOS acceptance error:', error);
+    } finally {
+      // Reset state after a delay in case modal doesn't close
+      setTimeout(() => setAccepting(false), 1000);
+    }
   };
 
   const handleDecline = () => {
@@ -171,6 +179,11 @@ export function TOSModal({ isOpen, onAccept, onDecline }: TOSModalProps) {
         {accepting && (
           <p className="mt-2 text-center text-xs text-[#14F195]">
             Processing...
+          </p>
+        )}
+        {error && !accepting && (
+          <p className="mt-2 text-center text-xs text-red-400">
+            {error}
           </p>
         )}
       </div>

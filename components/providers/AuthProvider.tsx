@@ -12,6 +12,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     tokenBalance,
     acceptTOS,
     declineTOS,
+    error,
+    clearError,
   } = useAuth();
 
   return (
@@ -28,6 +30,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isOpen={showTOSModal}
         onAccept={acceptTOS}
         onDecline={declineTOS}
+        error={error}
+        onClearError={clearError}
       />
       
       {children}

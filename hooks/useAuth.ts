@@ -224,9 +224,12 @@ export function useAuth() {
           ...prev,
           hasAcceptedTOS: true,
           isLoading: false,
+          error: null,
         }));
         setShowTOSModal(false);
         console.log('✅ TOS accepted');
+      } else {
+        throw new Error('Failed to accept TOS');
       }
     } catch (error: any) {
       console.error('❌ TOS acceptance failed:', error);
@@ -234,14 +237,21 @@ export function useAuth() {
       setAuthState(prev => ({
         ...prev,
         isLoading: false,
-        error: 'Failed to accept TOS',
+        error: error.response?.data?.error || 'Failed to accept TOS',
       }));
+      
+      // Don't close modal on error - let user try again
+      // setShowTOSModal(false);
     }
   };
 
   const declineTOS = () => {
     disconnect();
     setShowTOSModal(false);
+  };
+
+  const clearError = () => {
+    setAuthState(prev => ({ ...prev, error: null }));
   };
 
   return {
@@ -251,6 +261,7 @@ export function useAuth() {
     tokenBalance,
     acceptTOS,
     declineTOS,
+    clearError,
     checkAuthStatus,
     mounted,
   };
