@@ -38,7 +38,7 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  const X_COMMUNITY_URL = 'https://x.com/i/communities/2036947155697504284/';
+  const X_COMMUNITY_URL = 'https://x.com/i/communities/2036984251753648504/';
 
   return (
     <>
