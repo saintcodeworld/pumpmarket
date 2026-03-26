@@ -5,8 +5,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import Link from 'next/link';
 
-const CONTRACT_ADDRESS = '9y3ZHj6DTLKShcZr6JJVdZXHvph5m9QhyQmxpnBBpump';
-const DEXSCREENER_CHART_URL = 'https://dexscreener.com/solana/9y3ZHj6DTLKShcZr6JJVdZXHvph5m9QhyQmxpnBBpump';
+const CONTRACT_ADDRESS = '8uQHXVLgXj8AKgRzDTFZGXeGZqzNTwCL3BYuJnPMpump';
+const DEXSCREENER_CHART_URL = 'https://dexscreener.com/solana/8uQHXVLgXj8AKgRzDTFZGXeGZqzNTwCL3BYuJnPMpump';
 
 export default function Home() {
   const [copied, setCopied] = useState(false);

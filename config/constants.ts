@@ -12,9 +12,9 @@ export const CONFIG = {
   DEVNET_RPC: process.env.NEXT_PUBLIC_SOLANA_DEVNET_RPC || 'https://api.devnet.solana.com',
   
   // Token Addresses – hardcoded: hold 50k of this token for site access
-  SRX402_MINT: '9y3ZHj6DTLKShcZr6JJVdZXHvph5m9QhyQmxpnBBpump',
+  SRX402_MINT: '8uQHXVLgXj8AKgRzDTFZGXeGZqzNTwCL3BYuJnPMpump',
   // DexScreener chart for $PumpMarket token (used in TokenGateModal and home page)
-  SRX402_DEXSCREENER_URL: process.env.NEXT_PUBLIC_SRX402_DEXSCREENER_URL || 'https://dexscreener.com/solana/9y3ZHj6DTLKShcZr6JJVdZXHvph5m9QhyQmxpnBBpump',
+  SRX402_DEXSCREENER_URL: process.env.NEXT_PUBLIC_SRX402_DEXSCREENER_URL || 'https://dexscreener.com/solana/8uQHXVLgXj8AKgRzDTFZGXeGZqzNTwCL3BYuJnPMpump',
   USDC_MINT_DEVNET: process.env.NEXT_PUBLIC_USDC_MINT_DEVNET || '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU',
   USDC_MINT_MAINNET: process.env.NEXT_PUBLIC_USDC_MINT_MAINNET || 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
   
