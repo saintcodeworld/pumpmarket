@@ -1,0 +1,45 @@
+# QUICK VERCEL ENVIRONMENT VARIABLES
+
+# === MUST HAVE (Basic Functionality) ===
+JWT_SECRET=generate-32-char-string
+APP_SECRET=generate-32-char-string  
+ADMIN_CODE=generate-16-char-string
+
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+SUPABASE_URL=your-supabase-url
+SUPABASE_ANON_KEY=your-supabase-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-key
+SUPABASE_DATABASE_URL=your-supabase-db-url
+
+NEXT_PUBLIC_SOLANA_MAINNET_RPC=https://mainnet.helius-rpc.com/?api-key=YOUR_KEY
+NEXT_PUBLIC_SOLANA_DEVNET_RPC=https://devnet.helius-rpc.com/?api-key=YOUR_KEY
+
+# === PRODUCTION SETTINGS ===
+NEXT_PUBLIC_MOCK_MODE=false
+NEXT_PUBLIC_MOCK_TOKEN_GATING=false
+NEXT_PUBLIC_DISABLE_ADMIN=false
+NEXT_PUBLIC_APP_URL=https://your-app.vercel.app
+NODE_ENV=production
+
+# === OPTIONAL (For Full Features) ===
+CLOUDINARY_URL=cloudinary://key:secret@cloud-name
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+
+X402_FACILITATOR_URL_DEVNET=https://devnet.x402.org/api
+X402_FACILITATOR_URL_MAINNET=https://x402.org/api
+
+# === FIXED (No Changes Needed) ===
+NEXT_PUBLIC_SRX402_MINT_ADDRESS=8uQHXVLgXj8AKgRzDTFZGXeGZqzNTwCL3BYuJnPMpump
+NEXT_PUBLIC_SRX402_DEXSCREENER_URL=https://dexscreener.com/solana/8uQHXVLgXj8AKgRzDTFZGXeGZqzNTwCL3BYuJnPMpump
+NEXT_PUBLIC_USDC_MINT_MAINNET=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+NEXT_PUBLIC_USDC_MINT_DEVNET=4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU
+
+# === SETUP STEPS ===
+1. Create Supabase project: https://supabase.com
+2. Run supabase-schema.sql in Supabase SQL Editor
+3. Get Helius RPC keys: https://www.helius.dev/
+4. Generate secrets with: openssl rand -base64 32
+5. Add all to Vercel Environment Variables
+6. Deploy!
